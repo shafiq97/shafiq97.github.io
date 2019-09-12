@@ -19,6 +19,7 @@ Fix Alerts
     <link rel="stylesheet" href="CSS/style.css">
     <link rel="stylesheet" href="CSS/animate.css">
     <script src="dist/build.js"></script>
+    <script src="https://static.opentok.com/v2/js/opentok.min.js"></script>
 </head>
 
 <body>
@@ -68,14 +69,11 @@ Fix Alerts
         It also displays the Video Call feed once the user decides to do that-->
         <div id="videoHolder" class="videoContainerTrain">
             <video id="video" class="videoTrain" src='' muted autoplay playsinline></video>
-            <iframe
-                src="https://tokbox.com/embed/embed/ot-embed.js?embedId=7df4427a-4c2b-42ef-8973-6b7bb5c163a7&room=DEFAULT_ROOM&iframe=true"
-                width="800px"
-                height="640px"
-                scrolling="auto"
-                allow="microphone; camera"
-                id="videoCall">
-            </iframe>
+            <div id="videoCall">
+                <div id="subscriber" style="width: 50%; height: 50%"></div>
+                <div id="publisher" style="width: 50%; height: 50%"></div>
+            </div>
+            <script src="openTok.js"></script>
         </div>
 
         <!--Training Holder displays the screen where users add and train new gestures-->

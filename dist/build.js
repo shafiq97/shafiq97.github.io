@@ -105,9 +105,9 @@ Author: Sufiyaan Nadeem
             // Webcam Image size. Must be 227.
             const IMAGE_SIZE = 227;
             // K value for KNN. 10 means that we will take votes from 10 data points to classify each tensor.
-            const TOPK = 10;
+            const TOPK = 9;
             // Percent confidence above which prediction needs to be to return a prediction.
-            const confidenceThreshold = 0.98
+            const confidenceThreshold = 0.90
 
             // Initial Gestures that need to be trained.
             // The start gesture is for signalling when to start prediction
