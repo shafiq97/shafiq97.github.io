@@ -17,7 +17,7 @@ function getEmail(email){
   query.get().then(function(querySnapshot) {
       querySnapshot.forEach(function(doc) {
           // doc.data() is never undefined for query doc snapshots
-          console.log("query");
+          window.location.href = "Interviewee.html";
       });
   });
 
