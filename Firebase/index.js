@@ -24,7 +24,7 @@ function getEmail(email){
   query2.get().then(function(querySnapshot) {
       querySnapshot.forEach(function(doc) {
           // doc.data() is never undefined for query doc snapshots
-          console.log("query2");
+          window.location.href = "Interviewer.html";
       });
   });      
 }
