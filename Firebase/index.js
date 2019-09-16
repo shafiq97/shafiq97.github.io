@@ -69,14 +69,9 @@ function login(){
     var errorMessage = error.message;
 
     window.alert("Error : " + errorMessage);
-
-    // ...
   });
-
-  // Initialize Firebase
-
- 
 }
+
 function logout(){
   firebase.auth().signOut();
 }

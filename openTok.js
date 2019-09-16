@@ -27,8 +27,8 @@ function initializeSession() {
   // Create a publisher
   var publisher = OT.initPublisher('publisher', {
     insertMode: 'append',
-    width: '50%',
-    height: '50%'
+    width: '100%',
+    height: '100%'
   }, handleError);
 
   // Connect to the session
