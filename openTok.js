@@ -13,6 +13,7 @@ function handleError(error) {
 }
 
 function initializeSession() {
+  
   var session = OT.initSession(apiKey, sessionId);
 
   // Subscribe to a newly created stream
@@ -40,4 +41,18 @@ function initializeSession() {
       session.publish(publisher, handleError);
     }
   });
+
+  session.signal(
+    {
+      data:"hello"
+    },
+    function(error) {
+      if (error) {
+        console.log("signal error (" + error.name + "): " + error.message);
+      } else {
+        console.log("signal sent.");
+      }
+    }
+  );
 }
+

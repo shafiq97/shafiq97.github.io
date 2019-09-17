@@ -1,3 +1,4 @@
+//firebase configuration
 var config = {
   apiKey: "AIzaSyCSknLFSZ9heejCU7P_1w8wzHxf21xIyYQ",
   authDomain: "fypdatabase-c8728.firebaseapp.com",
@@ -7,7 +8,17 @@ var config = {
   messagingSenderId: "894982810977",
   appId: "1:894982810977:web:29df3aafd48d14f7eda920"
 };
+
+//initialize firebase
 firebase.initializeApp(config);
+
+//set cache to unlimited
+firebase.firestore().settings({
+  cacheSizeBytes: firebase.firestore.CACHE_SIZE_UNLIMITED
+});
+
+//enable offline database
+firebase.firestore().enablePersistence();
 
 function getEmail(email){
 
@@ -30,30 +41,22 @@ function getEmail(email){
 }
 
 var db = firebase.firestore();
-console.log(db);
 var userRef = db.collection("users");
-console.log(userRef);
 
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     // User is signed in.
-
-    var user = firebase.auth().currentUser;
+    var user2 = firebase.auth().currentUser;
     var uid = user.uid;
 
-    if(user != null){
-
-      //window.location.href = "Interviewee.html";
+    if(user2 != null)
       window.alert("Your Id:  " + uid);
-
-    }
 
   } else {
     // No user is signed in.
-
     document.getElementById("login_div").style.display = "block";
-
   }
+
 });
 
 function login(){
