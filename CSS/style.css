@@ -97,13 +97,12 @@ body::-webkit-scrollbar-thumb:hover {
   transform: rotateY(180deg);
   -webkit-transform: rotateY(180deg);
   -moz-transform: rotateY(180deg);
-  background-color: black;
+  background-color: transparent;
   transition: 1s;
 }
 
 #videoHolder {
-  background-color: black;
-  border: 8px solid black;
+  background-color: transparent;
   display: inline-block;
   border-radius: 5px;
   vertical-align: middle;
@@ -117,8 +116,8 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .videoContainerPredict {
-  width: 650px;
-  height: 370px;
+  width: 227px;
+  height: 227px;
   margin-top: -35px;
 }
 
