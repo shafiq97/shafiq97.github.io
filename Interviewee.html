@@ -20,6 +20,7 @@ Fix Alerts
     <link rel="stylesheet" href="CSS/animate.css">
     <script defer src="dist/build.js"></script>
     <script src="https://static.opentok.com/v2/js/opentok.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -87,13 +88,12 @@ Fix Alerts
         <!--Video Holder displays the video feed from the user for training and translation.
         It also displays the Video Call feed once the user decides to do that-->
         <div id="videoHolder" class="videoContainerTrain">
-            <video id="video" class="videoTrain" src='' muted autoplay playsinline width="1080"></video>
+            <video id="video" class="videoTrain" src='' muted autoplay playsinline></video>
             <div id="videoCall">
                 <div id="subscriber"></div>
                 <div id="publisher"></div>
             </div>
-            <script src="openTok.js"></script>
-            
+            <script src="openTok.js"></script>   
         </div>
 
         <!--Training Holder displays the screen where users add and train new gestures-->
