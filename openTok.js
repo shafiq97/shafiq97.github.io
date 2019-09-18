@@ -39,20 +39,39 @@ function initializeSession() {
       handleError(error);
     } else {
       session.publish(publisher, handleError);
+      console.log("Connected to the session");
+      const text = document.querySelector('#translationText');
+
+      const observer = new MutationObserver(mutations => {
+          mutations.forEach(record => {
+            this.newText = record.addedNodes[0].nodeValue;
+            console.log(this.newText);
+            session.signal(
+              {
+                
+                type:'string',
+                data:this.newText
+              },
+              function(error) {
+                if (error) {
+                  console.log("signal error (" + error.name + "): " + error.message);
+                } else {
+                  console.log("signal sent.");
+                }
+              }
+            );
+            //mutations observer
+          });
+      });
+
+      observer.observe(text, {
+        childList: true
+      });
+      
+      
     }
   });
 
-  session.signal(
-    {
-      data:"hello"
-    },
-    function(error) {
-      if (error) {
-        console.log("signal error (" + error.name + "): " + error.message);
-      } else {
-        console.log("signal sent.");
-      }
-    }
-  );
+  
 }
 
