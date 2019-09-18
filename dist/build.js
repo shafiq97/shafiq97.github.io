@@ -810,7 +810,6 @@ Author: Sufiyaan Nadeem
                                     this.clearPara();
                                 }
                             }, this.waitTimeForQuery);
-
                         }
 
                         // If first word is not start, return
