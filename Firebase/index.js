@@ -20,7 +20,10 @@ firebase.firestore().settings({
 //enable offline database
 firebase.firestore().enablePersistence();
 
-function getEmail(email){
+function getUserRole(email){
+
+  var db = firebase.firestore();
+  var userRef = db.collection("users");
 
   var query = userRef.where("Email", "==", email).where("Role", "==", "Candidate");
   var query2 = userRef.where("Email", "==", email).where("Role", "==", "Interviewer"); 
@@ -30,7 +33,7 @@ function getEmail(email){
           // doc.data() is never undefined for query doc snapshots
           window.location.href = "Interviewee.html";
       });
-  });
+  }); 
 
   query2.get().then(function(querySnapshot) {
       querySnapshot.forEach(function(doc) {
@@ -40,31 +43,9 @@ function getEmail(email){
   });      
 }
 
-var db = firebase.firestore();
-var userRef = db.collection("users");
-
-firebase.auth().onAuthStateChanged(function(user) {
-  if (user) {
-    // User is signed in.
-    var user2 = firebase.auth().currentUser;
-    var uid = user.uid;
-
-    if(user2 != null)
-      window.alert("Your Id:  " + uid);
-
-  } else {
-    // No user is signed in.
-    document.getElementById("login_div").style.display = "block";
-  }
-
-});
-
 function login(){
-
-  var userEmail = document.getElementById("email_field").value;
   var userPass = document.getElementById("password_field").value;
-
-  getEmail(userEmail);
+  var userEmail = document.getElementById("email_field").value;
 
   firebase.auth().signInWithEmailAndPassword(userEmail, userPass).catch(function(error) {
     // Handle Errors here.
@@ -74,6 +55,24 @@ function login(){
     window.alert("Error : " + errorMessage);
   });
 }
+
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    // User is signed in.
+    var user2 = firebase.auth().currentUser;
+    var uid = user.uid;
+
+    if(user2 != null)
+    {
+      window.alert("Your Id:  " + uid);
+      this.userEmail = document.getElementById("email_field").value;
+      getUserRole(this.userEmail);
+    }
+  } else {
+    // No user is signed in.
+    document.getElementById("login_div").style.display = "block";
+  }
+});
 
 function logout(){
   firebase.auth().signOut();

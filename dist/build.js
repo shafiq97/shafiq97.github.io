@@ -107,7 +107,7 @@ Author: Sufiyaan Nadeem
             // K value for KNN. 10 means that we will take votes from 10 data points to classify each tensor.
             const TOPK = 9;
             // Percent confidence above which prediction needs to be to return a prediction.
-            const confidenceThreshold = 0.90
+            const confidenceThreshold = 0.90;
 
             // Initial Gestures that need to be trained.
             // The start gesture is for signalling when to start prediction
@@ -755,7 +755,7 @@ Author: Sufiyaan Nadeem
 
                     //Initializing variables for speech synthesis and output
                     this.synth = window.speechSynthesis;
-                    this.voices = [];
+                    this.voices = [0];
                     this.pitch = 1.0;
                     this.rate = 0.9;
 
