@@ -32,6 +32,7 @@ function initializeSession() {
     height: '100%'
   }, handleError);
 
+  var nodeValue;
   // Connect to the session
   session.connect(token, function(error) {
     // If the connection is successful, publish to the session
@@ -46,9 +47,10 @@ function initializeSession() {
           mutations.forEach(record => {
             this.newText = record.addedNodes[0].nodeValue;
             console.log(this.newText);
+            //Send signal to all clients
             session.signal(
               {
-                type:'string',
+                type:'msg',
                 data:this.newText
               },
               function(error) {
@@ -59,15 +61,12 @@ function initializeSession() {
                 }
               }
             );
-            //mutations observer
           });
       });
 
       observer.observe(text, {
         childList: true
       });
-      
-      
     }
   });
 

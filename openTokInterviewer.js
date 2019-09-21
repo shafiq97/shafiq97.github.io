@@ -18,7 +18,7 @@ function initializeSession() {
 
   // Subscribe to a newly created stream
   session.on('streamCreated', function(event) {
-    session.subscribe(event.stream, 'subscriber', {
+      session.subscribe(event.stream, 'subscriber', {
       insertMode: 'append',
       width: '100%',
       height: '100%'
@@ -29,7 +29,8 @@ function initializeSession() {
   var publisher = OT.initPublisher('publisher', {
     insertMode: 'append',
     width: '100%',
-    height: '100%'
+    height: '100%',
+    fitMode: 'cover'
   }, handleError);
 
   // Connect to the session
@@ -39,38 +40,20 @@ function initializeSession() {
       handleError(error);
     } else {
       session.publish(publisher, handleError);
-      console.log("Connected to the session");
-      const text = document.querySelector('#translationText');
-
-      const observer = new MutationObserver(mutations => {
-          mutations.forEach(record => {
-            this.newText = record.addedNodes[0].nodeValue;
-            console.log(this.newText);
-            session.signal(
-              {
-                type:'string',
-                data:this.newText
-              },
-              function(error) {
-                if (error) {
-                  console.log("signal error (" + error.name + "): " + error.message);
-                } else {
-                  console.log("signal sent.");
-                }
-              }
-            );
-            //mutations observer
-          });
-      });
-
-      observer.observe(text, {
-        childList: true
-      });
-      
-      
+      console.log("Connection published");
     }
   });
 
+  //Receive signal
+  session.on("signal", function(event) {
+       console.log("Signal sent from connection " + event.from.id);
+       console.log(event.data);
+       // Process the event.data property, if there is any data.
+  });
+
+
   
+
+
 }
 

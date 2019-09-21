@@ -24,7 +24,7 @@ function getUserRole(email){
 
   var db = firebase.firestore();
   var userRef = db.collection("users");
-
+ 
   var query = userRef.where("Email", "==", email).where("Role", "==", "Candidate");
   var query2 = userRef.where("Email", "==", email).where("Role", "==", "Interviewer"); 
     
@@ -56,7 +56,7 @@ function login(){
   });
 }
 
-firebase.auth().onAuthStateChanged(function(user) {
+firebase.auth().onAuthStateChanged(function(user){
   if (user) {
     // User is signed in.
     var user2 = firebase.auth().currentUser;
