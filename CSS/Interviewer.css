@@ -1,0 +1,31 @@
+.publisher {
+    height: 30%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 30%;
+    z-index: 10;
+}
+.subscriber {
+    border-radius: 3px;
+    bottom: 10px;
+    position: absolute;
+    width: 360px;
+    height: 240px;
+    left: 10px;
+    z-index: 100;
+    box-sizing: border-box;
+}
+.textFromCandidate {
+    position:absolute;
+    width:800px;
+    height:75px;
+    bottom:10px;
+    right:25%;
+    left:50%;
+    margin-left:-400px;  
+    border-style: solid; 
+    border-color: green;
+    text-align: center;
+    font-size: 24px;
+}
