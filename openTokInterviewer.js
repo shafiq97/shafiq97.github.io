@@ -44,16 +44,13 @@ function initializeSession() {
     }
   });
 
+  var text = document.getElementById("text");
   //Receive signal
   session.on("signal", function(event) {
        console.log("Signal sent from connection " + event.from.id);
        console.log(event.data);
        // Process the event.data property, if there is any data.
+       text.innerText = event.data;
   });
-
-
-  
-
-
 }
 
