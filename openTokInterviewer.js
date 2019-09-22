@@ -45,16 +45,18 @@ function initializeSession() {
   });
 
   var text = document.getElementById("text");
-  //Receive signal
-  session.on("signal:predict", function(event) {
+  var msgHistory = document.querySelector('#history');
+
+  //Receive signal for predicted words
+  session.on("signal:textMessage", function(event) {
        console.log("Signal sent from connection " + event.from.id);
        console.log(event.data);
        // Process the event.data property, if there is any data.
        text.innerText = event.data;
   });
 
-  var msgHistory = document.querySelector('#history');
-  session.on('signal:msg2', function(event) {
+  //Recevice signal for text chat
+  session.on('signal', function(event) {
     var msg = document.createElement('p');
     msg.innerText = event.data;
     msg.className = event.from.connectionId === session.connection.connectionId ? 'mine' : 'theirs';
@@ -65,7 +67,7 @@ function initializeSession() {
   //send signal
   function textChat(){
     session.signal({
-      type: 'msg',
+      type: 'signal',
       data: msgTxt.value
     }, function signalCallback(error) {
       if (error) {

@@ -42,17 +42,16 @@ function initializeSession() {
     else {
       session.publish(publisher, handleError);
       console.log("Connected to the session");
-      const text = document.querySelector('#translationText');
-      
 
+      const text = document.querySelector('#translationText');
       const observer = new MutationObserver(mutations => {
           mutations.forEach(record => {
-            this.newText = record.addedNodes[0];
+            this.newText = record.addedNodes[0].nodeValue;
             console.log(this.newText);
             //Send signal to all clients
             session.signal(
               {
-                type:"msg2",
+                type:"textMessage",
                 data:"" + this.newText
               },
               function(error) {
@@ -73,7 +72,7 @@ function initializeSession() {
       // Text chat
       function textChat(){
         session.signal({
-          type: 'msg',
+          type: 'signal',
           data: msgTxt.value
         }, function signalCallback(error) {
           if (error) {
