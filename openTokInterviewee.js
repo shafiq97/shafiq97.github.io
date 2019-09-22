@@ -38,20 +38,22 @@ function initializeSession() {
     // If the connection is successful, publish to the session
     if (error) {
       handleError(error);
-    } else {
+    } 
+    else {
       session.publish(publisher, handleError);
       console.log("Connected to the session");
       const text = document.querySelector('#translationText');
+      
 
       const observer = new MutationObserver(mutations => {
           mutations.forEach(record => {
-            this.newText = record.addedNodes[0].nodeValue;
+            this.newText = record.addedNodes[0];
             console.log(this.newText);
             //Send signal to all clients
             session.signal(
               {
-                type:'msg',
-                data:this.newText
+                type:"msg2",
+                data:"" + this.newText
               },
               function(error) {
                 if (error) {
@@ -67,6 +69,30 @@ function initializeSession() {
       observer.observe(text, {
         childList: true
       });
+
+      // Text chat
+      function textChat(){
+        session.signal({
+          type: 'msg',
+          data: msgTxt.value
+        }, function signalCallback(error) {
+          if (error) {
+            console.error('Error sending signal:', error.name, error.message);
+          } else {
+            msgTxt.value = '';
+          }
+        });
+      }
+      var msgTxt = document.querySelector('#msgTxt');
+      document.querySelector('#msgTxt').addEventListener('keypress', function (e) {
+          var key = e.which || e.keyCode;
+          if (key === 13) { // 13 is enter
+            // code for enter
+            textChat();
+          }
+      });
+      
+      
     }
   });
 

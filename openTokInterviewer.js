@@ -46,11 +46,43 @@ function initializeSession() {
 
   var text = document.getElementById("text");
   //Receive signal
-  session.on("signal", function(event) {
+  session.on("signal:predict", function(event) {
        console.log("Signal sent from connection " + event.from.id);
        console.log(event.data);
        // Process the event.data property, if there is any data.
        text.innerText = event.data;
+  });
+
+  var msgHistory = document.querySelector('#history');
+  session.on('signal:msg2', function(event) {
+    var msg = document.createElement('p');
+    msg.innerText = event.data;
+    msg.className = event.from.connectionId === session.connection.connectionId ? 'mine' : 'theirs';
+    msgHistory.appendChild(msg);
+    msg.scrollIntoView();
+  });
+
+  //send signal
+  function textChat(){
+    session.signal({
+      type: 'msg',
+      data: msgTxt.value
+    }, function signalCallback(error) {
+      if (error) {
+        console.error('Error sending signal:', error.name, error.message);
+      } else {
+        msgTxt.value = '';
+      }
+    });
+  }
+
+  //Send signal when enter is pressed
+  document.querySelector('#msgTxt').addEventListener('keypress', function (e) {
+      var key = e.which || e.keyCode;
+      if (key === 13) { // 13 is enter
+        // code for enter
+        textChat();
+      }
   });
 }
 

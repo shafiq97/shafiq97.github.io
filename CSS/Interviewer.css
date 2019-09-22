@@ -1,4 +1,4 @@
-.publisher {
+.subscriber {
     height: 30%;
     left: 0;
     position: absolute;
@@ -6,7 +6,7 @@
     width: 30%;
     z-index: 10;
 }
-.subscriber {
+.publisher {
     border-radius: 3px;
     bottom: 10px;
     position: absolute;
@@ -28,4 +28,32 @@
     border-color: green;
     text-align: center;
     font-size: 24px;
+}
+#textchat {
+    position: relative;
+    width: 20%;
+    float: right;
+    right: 0;
+    height: 100%;
+    background-color: #333;
+}
+#history {
+     width: 100%;
+     height: calc(100% - 40px);
+     overflow: auto;
+}
+#msgTxt {
+            height: 40px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+}
+#history .mine {
+    color: #00FF00;
+    text-align: right;
+    margin-right: 10px;
+}
+#history .theirs {
+    color: #00FFFF;
+    margin-left: 10px;
 }

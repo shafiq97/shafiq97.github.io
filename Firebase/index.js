@@ -38,12 +38,13 @@ function getUserRole(email){
   query2.get().then(function(querySnapshot) {
       querySnapshot.forEach(function(doc) {
           // doc.data() is never undefined for query doc snapshots
-          window.location.href = "Interviewer.html";
+          location.href = "Interviewer.html";
       });
   });      
 }
 
 function login(){
+
   var userPass = document.getElementById("password_field").value;
   var userEmail = document.getElementById("email_field").value;
 
@@ -64,7 +65,6 @@ firebase.auth().onAuthStateChanged(function(user){
 
     if(user2 != null)
     {
-      window.alert("Your Id:  " + uid);
       this.userEmail = document.getElementById("email_field").value;
       getUserRole(this.userEmail);
     }
