@@ -1,3 +1,4 @@
+var interviewerUserName = sessionStorage.getItem("interviewerUserName");
 // replace these values with those generated in your TokBox Account
 var apiKey = "46417142";
 var sessionId = "2_MX40NjQxNzE0Mn5-MTU2ODMwMjY4ODU3M35jUGRGNHFUUHdOSXk4K0pwdGhiMGltZ0N-UH4";
@@ -55,16 +56,8 @@ function initializeSession() {
        text.innerText = event.data;
   });
 
-  //Recevice signal for text chat
-  session.on('signal', function(event) {
-    var msg = document.createElement('p');
-    msg.innerText = event.data;
-    msg.className = event.from.connectionId === session.connection.connectionId ? 'mine' : 'theirs';
-    msgHistory.appendChild(msg);
-    msg.scrollIntoView();
-  });
+ 
 
-  //send signal
   function textChat(){
     session.signal({
       type: 'signal',
@@ -77,8 +70,7 @@ function initializeSession() {
       }
     });
   }
-
-  //Send signal when enter is pressed
+  var msgTxt = document.querySelector('#msgTxt');
   document.querySelector('#msgTxt').addEventListener('keypress', function (e) {
       var key = e.which || e.keyCode;
       if (key === 13) { // 13 is enter
@@ -86,5 +78,15 @@ function initializeSession() {
         textChat();
       }
   });
+  
+  var msgHistory = document.querySelector('#history');
+  session.on('signal', function(event) {
+    var msg = document.createElement('p');
+    msg.innerText = event.data;
+    msg.className = event.from.connectionId === session.connection.connectionId ? 'mine' : 'theirs';
+    msgHistory.appendChild(msg);
+    msg.scrollIntoView();
+  });
+
 }
 

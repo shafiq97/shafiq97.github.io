@@ -33,7 +33,10 @@ Fix Alerts
         </div>
         <button id="proceedButton">Proceed</button>
     </div>
-
+    <div id="textchat">
+           <p id="history"></p>
+           <input type="text" placeholder="Input your text here" id="msgTxt" autocomplete="off"></input>    
+    </div>
     <!--Title bar explains the stage of the program 
     (eg: instructions for Training, Prediction, and Video Chat)-->
     <div id="titleBar">
@@ -44,6 +47,9 @@ Fix Alerts
         <button id="backButton" class="animated slideInLeft faster">Back to Training</button>
         <button id="videoCallBtn" class="videoCallBtn animated slideInRight faster">Video Call</button>
     </div>
+
+    
+   
 
     <!--Status bar shows the status of translation-->
     <div id="status">
@@ -66,26 +72,6 @@ Fix Alerts
             <img src="" alt="checkmark" id="checkmark_stopButton" class="checkMark">
         </div>
 
-        <style type="text/css">
-            #publisher {
-                position: absolute;
-                width: 360px;
-                height: 240px;
-                bottom: 10px;
-                left: 10px;
-                box-sizing: border-box;
-                border-radius: 3px;
-            }
-            #subscriber {
-                position: absolute;
-                left: 0;
-                top: 0;
-                width: 30%;
-                height: 30%;  
-            }
-        </style>
-      
-
         <!--Video Holder displays the video feed from the user for training and translation.
         It also displays the Video Call feed once the user decides to do that-->
         <div id="videoHolder" class="videoContainerTrain">
@@ -93,8 +79,7 @@ Fix Alerts
             <div id="videoCall">
                 <div id="subscriber"></div>
                 <div id="publisher"></div>
-            </div>
-            <script src="openTokInterviewee.js"></script>   
+            </div>   
         </div>
 
         <!--Training Holder displays the screen where users add and train new gestures-->
@@ -123,10 +108,9 @@ Fix Alerts
     <div id="trainedCardsHolder">
     </div>
 
-    <div id="textchat">
-           <p id="history"></p>
-           <input type="text" placeholder="Input your text here" id="msgTxt" autocomplete="off"></input>    
-    </div>
+
+
+    <script src="openTokInterviewee.js"></script>
 
 
 

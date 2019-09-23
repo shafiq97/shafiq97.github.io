@@ -1,5 +1,22 @@
+#publisher {
+    position: absolute;
+    width: 360px;
+    height: 240px;
+    bottom: 10px;
+    left: 10px;
+    box-sizing: border-box;
+    border-radius: 3px;
+}
+#subscriber {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 30%;
+    height: 30%;  
+}
 #textchat {
-    position: relative;
+    display: block; 
+    position: fixed;
     width: 20%;
     float: right;
     right: 0;
@@ -7,15 +24,16 @@
     background-color: #333;
 }
 #history {
-     width: 100%;
-     height: calc(100% - 40px);
-     overflow: auto;
+    width: 100%;
+    height: calc(100% - 220px);
+    overflow: auto;
+    margin-top: 150px;
 }
-input#msgTxt {
-            height: 40px;
-            position: absolute;
-            bottom: 0;
-            width: 100%;
+#msgTxt {
+    height: 40px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 #history .mine {
     color: #00FF00;

@@ -1,3 +1,6 @@
+var intervieweeUserName = sessionStorage.getItem("intervieweeUserName");
+
+
 // replace these values with those generated in your TokBox Account
 var apiKey = "46417142";
 var sessionId = "2_MX40NjQxNzE0Mn5-MTU2ODMwMjY4ODU3M35jUGRGNHFUUHdOSXk4K0pwdGhiMGltZ0N-UH4";
@@ -91,7 +94,15 @@ function initializeSession() {
           }
       });
       
-      
+      var msgHistory = document.querySelector('#history');
+      session.on('signal', function(event) {
+        var msg = document.createElement('p');
+        msg.innerText = event.data;
+        msg.className = event.from.connectionId === session.connection.connectionId ? 'mine' : 'theirs';
+        msgHistory.appendChild(msg);
+        msg.scrollIntoView();
+      });
+
     }
   });
 

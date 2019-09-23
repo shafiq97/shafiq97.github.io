@@ -24,23 +24,32 @@ function getUserRole(email){
 
   var db = firebase.firestore();
   var userRef = db.collection("users");
+  var interviewerUserName, intervieweeUserName = "";
+
  
   var query = userRef.where("Email", "==", email).where("Role", "==", "Candidate");
   var query2 = userRef.where("Email", "==", email).where("Role", "==", "Interviewer"); 
     
   query.get().then(function(querySnapshot) {
       querySnapshot.forEach(function(doc) {
-          // doc.data() is never undefined for query doc snapshots
-          window.location.href = "Interviewee.html";
+        // doc.data() is never undefined for query doc snapshots
+        intervieweeUserName = doc.data().Name;
+        sessionStorage.setItem("intervieweeUserName",intervieweeUserName);
+        location.href = "Interviewee.html";
       });
   }); 
 
   query2.get().then(function(querySnapshot) {
       querySnapshot.forEach(function(doc) {
-          // doc.data() is never undefined for query doc snapshots
-          location.href = "Interviewer.html";
+        interviewerUserName = doc.data().Name;
+        sessionStorage.setItem("interviewerUserName",interviewerUserName);
+        location.href = "Interviewer.html";
       });
-  });      
+  });
+
+
+
+
 }
 
 function login(){
