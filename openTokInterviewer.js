@@ -4,6 +4,7 @@ var apiKey = "46417142";
 var sessionId = "2_MX40NjQxNzE0Mn5-MTU2ODMwMjY4ODU3M35jUGRGNHFUUHdOSXk4K0pwdGhiMGltZ0N-UH4";
 var token = "T1==cGFydG5lcl9pZD00NjQxNzE0MiZzaWc9YzJmNjRlZmUxZDI4OWZmNTdjODU4ZDVjMjc1MDNkN2EwY2U1ZGM0YjpzZXNzaW9uX2lkPTJfTVg0ME5qUXhOekUwTW41LU1UVTJPRE13TWpZNE9EVTNNMzVqVUdSR05IRlVVSGRPU1hrNEswcHdkR2hpTUdsdFowTi1VSDQmY3JlYXRlX3RpbWU9MTU2ODMwMzM3MCZub25jZT0wLjE5NjExMDAxNjg0NDM0NzI2JnJvbGU9cHVibGlzaGVyJmV4cGlyZV90aW1lPTE1NzA4OTUzNjkmaW5pdGlhbF9sYXlvdXRfY2xhc3NfbGlzdD0=";
 // (optional) add server code here
+
 initializeSession();
 
 // Handling all of our errors here by alerting them
@@ -56,8 +57,6 @@ function initializeSession() {
        text.innerText = event.data;
   });
 
- 
-
   function textChat(){
     session.signal({
       type: 'signal',
@@ -70,6 +69,7 @@ function initializeSession() {
       }
     });
   }
+
   var msgTxt = document.querySelector('#msgTxt');
   document.querySelector('#msgTxt').addEventListener('keypress', function (e) {
       var key = e.which || e.keyCode;
@@ -78,8 +78,7 @@ function initializeSession() {
         textChat();
       }
   });
-  
-  var msgHistory = document.querySelector('#history');
+
   session.on('signal', function(event) {
     var msg = document.createElement('p');
     msg.innerText = event.data;
@@ -88,5 +87,39 @@ function initializeSession() {
     msg.scrollIntoView();
   });
 
+  speech();
+ }
+
+ function speech(){
+   window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+   const recognition = new SpeechRecognition();
+   recognition.interimResults = true;
+
+   let p = document.createElement('p');
+   const words = document.querySelector('.words');
+   words.appendChild(p);
+
+   //must run with a server
+   recognition.addEventListener('result', e => {
+     console.log(e.results);
+     const transcript = e.results[0][0].transcript;
+
+     p.textContent = transcript;
+     if(e.results[0][0].isFinal){
+       p = document.createElement('p');
+       words.appendChild(p);
+     }
+     console.log(transcript);
+   });
+
+   recognition.addEventListener('end', recognition.start); //start listening after a break
+   console.log("Speech start");
+   recognition.start();
 }
+
+
+
+
+
 
