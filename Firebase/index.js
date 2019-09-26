@@ -20,36 +20,56 @@ firebase.firestore().settings({
 //enable offline database
 firebase.firestore().enablePersistence();
 
-function getUserRole(email){
+function getUserRole(uid){
 
   var db = firebase.firestore();
-  var userRef = db.collection("users");
-  var interviewerUserName, intervieweeUserName = "";
-
+  var userRef = db.collection("users").doc(uid);
  
-  var query = userRef.where("Email", "==", email).where("Role", "==", "Candidate");
-  var query2 = userRef.where("Email", "==", email).where("Role", "==", "Interviewer"); 
-    
-  query.get().then(function(querySnapshot) {
+  userRef.get().then(function(doc) {
+      if (doc.exists) {
+          sessionStorage.setItem("uname",doc.data().Name);
+          if(doc.data().Role == "Interviewer"){
+            window.location.href = "Interviewer.html";
+          } else{
+            window.location.href = "Interviewee.html";
+          }
+      } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
+      }
+  }).catch(function(error) {
+      console.log("Error getting document:", error);
+  });
+  
+  /*query.get().then(function(querySnapshot) {
       querySnapshot.forEach(function(doc) {
         // doc.data() is never undefined for query doc snapshots
-        intervieweeUserName = doc.data().Name;
-        sessionStorage.setItem("intervieweeUserName",intervieweeUserName);
-        location.href = "Interviewee.html";
-      });
-  }); 
+        if(doc.data().Role == 'Candidate')
+        {
+          uname = doc.data().Name;
+          alert(uname);
+          //sessionStorage.setItem("intervieweeUserName",intervieweeUserName);
+          location.href = "Interviewee.html";
+        }
 
-  query2.get().then(function(querySnapshot) {
+        else{
+          uname = doc.data().Name;
+          alert(uname);
+          //sessionStorage.setItem("intervieweeUserName",intervieweeUserName);
+          location.href = "Interviewer.html";
+        }
+        
+      });
+  });*/
+
+  /*query2.get().then(function(querySnapshot) {
       querySnapshot.forEach(function(doc) {
         interviewerUserName = doc.data().Name;
         sessionStorage.setItem("interviewerUserName",interviewerUserName);
+        alert(interviewerUserName);
         location.href = "Interviewer.html";
       });
-  });
-
-
-
-
+  });*/
 }
 
 function login(){
@@ -69,13 +89,13 @@ function login(){
 firebase.auth().onAuthStateChanged(function(user){
   if (user) {
     // User is signed in.
-    var user2 = firebase.auth().currentUser;
+    user = firebase.auth().currentUser;
     var uid = user.uid;
 
-    if(user2 != null)
+    if(user != null)
     {
       this.userEmail = document.getElementById("email_field").value;
-      getUserRole(this.userEmail);
+      getUserRole(uid);
     }
   } else {
     // No user is signed in.

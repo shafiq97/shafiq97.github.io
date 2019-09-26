@@ -1,4 +1,4 @@
-var intervieweeUserName = sessionStorage.getItem("intervieweeUserName");
+var intervieweeUserName = sessionStorage.getItem("uname");
 
 
 // replace these values with those generated in your TokBox Account
@@ -76,7 +76,7 @@ function initializeSession() {
       function textChat(){
         session.signal({
           type: 'signal',
-          data: msgTxt.value
+          data: intervieweeUserName +": "+ msgTxt.value
         }, function signalCallback(error) {
           if (error) {
             console.error('Error sending signal:', error.name, error.message);

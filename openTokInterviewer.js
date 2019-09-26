@@ -1,4 +1,4 @@
-var interviewerUserName = sessionStorage.getItem("interviewerUserName");
+var interviewerUserName = sessionStorage.getItem("uname");
 // replace these values with those generated in your TokBox Account
 var apiKey = "46417142";
 var sessionId = "2_MX40NjQxNzE0Mn5-MTU2ODMwMjY4ODU3M35jUGRGNHFUUHdOSXk4K0pwdGhiMGltZ0N-UH4";
@@ -43,6 +43,7 @@ function initializeSession() {
     } else {
       session.publish(publisher, handleError);
       console.log("Connection published");
+      
     }
   });
 
@@ -60,7 +61,7 @@ function initializeSession() {
   function textChat(){
     session.signal({
       type: 'signal',
-      data: msgTxt.value
+      data: interviewerUserName +": "+msgTxt.value
     }, function signalCallback(error) {
       if (error) {
         console.error('Error sending signal:', error.name, error.message);
@@ -88,34 +89,34 @@ function initializeSession() {
   });
 
   speech();
- }
 
- function speech(){
-   window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-   const recognition = new SpeechRecognition();
-   recognition.interimResults = true;
+  function speech(){
+    window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-   let p = document.createElement('p');
-   const words = document.querySelector('.words');
-   words.appendChild(p);
+    const recognition = new SpeechRecognition();
+    recognition.interimResults = true;
 
-   //must run with a server
-   recognition.addEventListener('result', e => {
-     console.log(e.results);
-     const transcript = e.results[0][0].transcript;
+    let p = document.createElement('p');
 
-     p.textContent = transcript;
-     if(e.results[0][0].isFinal){
-       p = document.createElement('p');
-       words.appendChild(p);
-     }
-     console.log(transcript);
-   });
+    //must run with a server
+    recognition.addEventListener('result', e => {
+      const transcript = e.results[0][0].transcript;
 
-   recognition.addEventListener('end', recognition.start); //start listening after a break
-   console.log("Speech start");
-   recognition.start();
+      p.textContent = transcript;
+      if(e.results[0][0].isFinal){
+        p = document.createElement('p');
+        words.appendChild(p); 
+      }
+      console.log(transcript);
+      p.className = 'mine';
+      msgHistory.appendChild(p);
+    });
+
+     recognition.addEventListener('end', recognition.start); //start listening after a break
+     console.log("Speech start");
+     recognition.start();
+  }
 }
 
 
