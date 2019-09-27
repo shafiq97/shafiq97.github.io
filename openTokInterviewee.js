@@ -103,6 +103,14 @@ function initializeSession() {
         msg.scrollIntoView();
       });
 
+      /*session.on('signal:speech', function(event) {
+        var speech = document.createElement('p');
+        speech.innerText = event.data;
+        console.log("receive message:" + event.data);
+        msgHistory.appendChild(speech);
+        speech.scrollIntoView();
+      });*/
+
     }
   });
 

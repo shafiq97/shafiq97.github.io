@@ -1,18 +1,20 @@
-#publisher {
+.subscriber {
+    height: 30%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 30%;
+    z-index: 10;
+}
+.publisher {
+    border-radius: 3px;
+    bottom: 10px;
     position: absolute;
     width: 360px;
     height: 240px;
-    bottom: 10px;
     left: 10px;
+    z-index: 100;
     box-sizing: border-box;
-    border-radius: 3px;
-}
-#subscriber {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 30%;
-    height: 30%;  
 }
 #textchat {
     display: block; 

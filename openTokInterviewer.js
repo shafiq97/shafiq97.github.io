@@ -23,7 +23,7 @@ function initializeSession() {
       session.subscribe(event.stream, 'subscriber', {
       insertMode: 'append',
       width: '100%',
-      height: '100%'
+      height: '100%',
     }, handleError);
   });
 
@@ -32,7 +32,7 @@ function initializeSession() {
     insertMode: 'append',
     width: '100%',
     height: '100%',
-    fitMode: 'cover'
+    fitMode: 'cover',
   }, handleError);
 
   // Connect to the session
@@ -58,10 +58,10 @@ function initializeSession() {
        text.innerText = event.data;
   });
 
-  function textChat(){
+  function textChat(str){
     session.signal({
       type: 'signal',
-      data: interviewerUserName +": "+msgTxt.value
+      data: str
     }, function signalCallback(error) {
       if (error) {
         console.error('Error sending signal:', error.name, error.message);
@@ -76,7 +76,7 @@ function initializeSession() {
       var key = e.which || e.keyCode;
       if (key === 13) { // 13 is enter
         // code for enter
-        textChat();
+        textChat(interviewerUserName +": "+msgTxt.value);
       }
   });
 
@@ -90,7 +90,6 @@ function initializeSession() {
 
   speech();
 
-
   function speech(){
     window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
@@ -101,16 +100,17 @@ function initializeSession() {
 
     //must run with a server
     recognition.addEventListener('result', e => {
-      const transcript = e.results[0][0].transcript;
-
+      const transcript = Array.from(e.results)
+      .map(result => result[0])
+      .map(result => result.transcript)
+      .join('');
       p.textContent = transcript;
-      if(e.results[0][0].isFinal){
-        p = document.createElement('p');
-        words.appendChild(p); 
-      }
-      console.log(transcript);
+
+        if(e.results[0].isFinal){
+          p = document.createElement('p');
+          textChat(transcript);
+        }
       p.className = 'mine';
-      msgHistory.appendChild(p);
     });
 
      recognition.addEventListener('end', recognition.start); //start listening after a break
