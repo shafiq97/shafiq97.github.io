@@ -18,6 +18,8 @@ Additionally, usage of TensorFlow was learned from Abishek Singh's "alexa-sign-l
 
 Author: Sufiyaan Nadeem
 */
+var interval = "";
+
 (function () {
     function r(e, n, t) {
         function o(i, f) {
@@ -186,7 +188,7 @@ Author: Sufiyaan Nadeem
                     this.videoCall = document.getElementById("videoCall");
 
                     this.trainedCardsHolder = document.getElementById("trainedCardsHolder");
-
+                    
                     // Start Translator function is called
                     this.initializeTranslator();
 
@@ -283,11 +285,29 @@ Author: Sufiyaan Nadeem
                         var _this3 = this;
                         // Get specified training button
                         var trainBtn = document.getElementById(btnType);
+                        var stopInterval = document.getElementById("stopInterval");
+                        
+                        trainBtn.addEventListener('click', function () {
+                            
+                                 _this3.train(i);        
+                            
+                        });
 
                         // Call training function for this gesture on click
                         trainBtn.addEventListener('click', function () {
-                            _this3.train(i);
+                            
+                                interval = window.setInterval( function() { _this3.train(i); }, 300 );         
+                            
                         });
+
+                        stopInterval.addEventListener('click', function () {
+                            
+                                
+                                window.clearInterval(interval);
+                            
+                        });
+
+                       
 
                         // Clear button to remove training examples on click
                         var clearBtn = document.getElementById('clear_' + btnType);
@@ -491,9 +511,9 @@ Author: Sufiyaan Nadeem
                     value: function initializeTraining() {
                         // This function starts the training process.
 
-                        if (this.timer) {
+                        /*if (this.timer) {
                             this.stopTraining();
-                        }
+                        }*/
                         var promise = this.video.play();
 
                         if (promise !== undefined) {
@@ -509,7 +529,6 @@ Author: Sufiyaan Nadeem
                     key: 'train',
                     value: function train(gestureIndex) {
                         // This function adds examples for the gesture to the kNN model
-
                         console.log(this.videoPlaying);
                         if (this.videoPlaying) {
                             console.log("entered training");
@@ -539,9 +558,12 @@ Author: Sufiyaan Nadeem
                                     this.checkMarks[gestureIndex].src = "Images//checkmark.svg";
                                     this.checkMarks[gestureIndex].classList.add("animated");
                                     this.checkMarks[gestureIndex].classList.add("rotateIn");
+                                    
                                 }
                             }
                         }
+
+                        
                     }
                 }, {
                     key: 'createTranslateBtn',
