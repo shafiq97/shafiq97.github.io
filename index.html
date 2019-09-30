@@ -14,9 +14,11 @@
 
 <div id="login_div" class="main-div">
   <h3>Login</h3>
-  <input type="input" placeholder="Email..." id="email_field" required="" name="email_field" />
-  <input type="password" placeholder="Password..." id="password_field" autocomplete="password" required="" />
+  <input type="input" placeholder="Email..." id="email_field" name="email_field" min="1" max="100" />
+  <input type="password" placeholder="Password..." id="password_field" autocomplete="password"/>
   <button id="loginBtn" onclick="login()">Login to Account</button>
+  <button id="resetBtn" onclick="resetPassword()">Forgot Password ?</button>
+
 </div>
 
 </body>

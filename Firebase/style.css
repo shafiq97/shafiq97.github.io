@@ -56,3 +56,21 @@ input, button {
   border: 1px solid #5d8ffc;
   cursor: pointer;
 }
+
+#resetBtn{
+  float: right;
+  width:45%
+}
+
+#loginBtn{
+  float: left;
+  width: 45%
+}
+
+#email_field{
+  width:90%;
+}
+
+#password_field{
+  width:90%;
+}

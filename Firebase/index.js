@@ -28,9 +28,9 @@ function getUserRole(uid){
   userRef.get().then(function(doc) {
       if (doc.exists) {
           sessionStorage.setItem("uname",doc.data().Name);
-          if(doc.data().Role == "Interviewer"){
+          if(doc.data().Role == "Interviewer") {
             window.location.href = "Interviewer.html";
-          } else{
+          } else {
             window.location.href = "Interviewee.html";
           }
       } else {
@@ -72,10 +72,41 @@ function getUserRole(uid){
   });*/
 }
 
+function resetPassword() {
+
+    var userPass = document.getElementById("password_field").value;
+    var userEmail = document.getElementById("email_field").value;
+    var resetButton = document.getElementById("resetBtn").value;
+
+    if(userEmail) {
+
+      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      if (!re.test(String(userEmail).toLowerCase())) {
+        alert("Bad email format");
+      }
+
+      var auth = firebase.auth();
+      auth.sendPasswordResetEmail(userEmail).then(function() {
+        // Email sent.
+        console.log(userEmail);
+      }).catch(function(error) {
+        // An error happened.
+      });
+    }
+    else {
+      alert("Invalid email");
+    }
+
+
+}
+
+
+
 function login(){
 
   var userPass = document.getElementById("password_field").value;
   var userEmail = document.getElementById("email_field").value;
+  var resetButton = document.getElementById("resetBtn").value;
 
   firebase.auth().signInWithEmailAndPassword(userEmail, userPass).catch(function(error) {
     // Handle Errors here.
@@ -86,25 +117,26 @@ function login(){
   });
 }
 
-firebase.auth().onAuthStateChanged(function(user){
+firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     // User is signed in.
     user = firebase.auth().currentUser;
     var uid = user.uid;
 
-    if(user != null)
-    {
+    if(user != null) {
       this.userEmail = document.getElementById("email_field").value;
       getUserRole(uid);
     }
-  } else {
+  } 
+  else {
     // No user is signed in.
     document.getElementById("login_div").style.display = "block";
   }
 });
 
-function logout(){
+function logout() {
   firebase.auth().signOut();
 }
 
+//logout upon browser refresh
 window.hashchange = logout();

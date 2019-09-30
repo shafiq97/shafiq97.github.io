@@ -15,6 +15,7 @@
     left: 10px;
     z-index: 100;
     box-sizing: border-box;
+    float: right;
 }
 .textFromCandidate {
     position:absolute;

@@ -1,19 +1,23 @@
+//get username from index.js
 var interviewerUserName = sessionStorage.getItem("uname");
+
 // replace these values with those generated in your TokBox Account
 var apiKey = "46417142";
 var sessionId = "2_MX40NjQxNzE0Mn5-MTU2ODMwMjY4ODU3M35jUGRGNHFUUHdOSXk4K0pwdGhiMGltZ0N-UH4";
 var token = "T1==cGFydG5lcl9pZD00NjQxNzE0MiZzaWc9YzJmNjRlZmUxZDI4OWZmNTdjODU4ZDVjMjc1MDNkN2EwY2U1ZGM0YjpzZXNzaW9uX2lkPTJfTVg0ME5qUXhOekUwTW41LU1UVTJPRE13TWpZNE9EVTNNMzVqVUdSR05IRlVVSGRPU1hrNEswcHdkR2hpTUdsdFowTi1VSDQmY3JlYXRlX3RpbWU9MTU2ODMwMzM3MCZub25jZT0wLjE5NjExMDAxNjg0NDM0NzI2JnJvbGU9cHVibGlzaGVyJmV4cGlyZV90aW1lPTE1NzA4OTUzNjkmaW5pdGlhbF9sYXlvdXRfY2xhc3NfbGlzdD0=";
+
 // (optional) add server code here
 
 initializeSession();
 
-// Handling all of our errors here by alerting them
+// Handling all errors by alerting them
 function handleError(error) {
   if (error) {
     alert(error.message);
   }
 }
 
+//function to create, connect to session
 function initializeSession() {
   
   var session = OT.initSession(apiKey, sessionId);
@@ -58,6 +62,7 @@ function initializeSession() {
        text.innerText = event.data;
   });
 
+  //Send message in chat box
   function textChat(str){
     session.signal({
       type: 'signal',
@@ -71,6 +76,7 @@ function initializeSession() {
     });
   }
 
+  //Event listener if enter is pressed
   var msgTxt = document.querySelector('#msgTxt');
   document.querySelector('#msgTxt').addEventListener('keypress', function (e) {
       var key = e.which || e.keyCode;
@@ -80,6 +86,7 @@ function initializeSession() {
       }
   });
 
+  //Receive signal to append in chat box
   session.on('signal', function(event) {
     var msg = document.createElement('p');
     msg.innerText = event.data;
@@ -88,6 +95,7 @@ function initializeSession() {
     msg.scrollIntoView();
   });
 
+  //funtion call for sppech to text
   speech();
 
   function speech(){
@@ -98,7 +106,7 @@ function initializeSession() {
 
     let p = document.createElement('p');
 
-    //must run with a server
+    //must run with a server/localhost
     recognition.addEventListener('result', e => {
       const transcript = Array.from(e.results)
       .map(result => result[0])
