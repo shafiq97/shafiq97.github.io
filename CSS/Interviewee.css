@@ -5,6 +5,7 @@
     top: 0;
     width: 30%;
     z-index: 10;
+    float: right;
 }
 .publisher {
     border-radius: 3px;
@@ -45,4 +46,8 @@
 #history .theirs {
     color: #00FFFF;
     margin-left: 10px;
+}
+
+#videos #subscriber{
+  float: right;
 }

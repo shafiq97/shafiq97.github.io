@@ -19,6 +19,8 @@ function initializeSession() {
   
   var session = OT.initSession(apiKey, sessionId);
 
+
+
   // Subscribe to a newly created stream
   session.on('streamCreated', function(event) {
     session.subscribe(event.stream, 'subscriber', {
@@ -32,9 +34,10 @@ function initializeSession() {
   var publisher = OT.initPublisher('publisher', {
     insertMode: 'append',
     width: '100%',
-    height: '100%'
+    height: '100%',
+    name: intervieweeUserName
   }, handleError);
-
+  
   var nodeValue;
   // Connect to the session
   session.connect(token, function(error) {
@@ -113,6 +116,7 @@ function initializeSession() {
 
     }
   });
+
 
   
 }

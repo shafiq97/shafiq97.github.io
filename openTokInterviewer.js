@@ -22,12 +22,14 @@ function initializeSession() {
   
   var session = OT.initSession(apiKey, sessionId);
 
+
   // Subscribe to a newly created stream
   session.on('streamCreated', function(event) {
       session.subscribe(event.stream, 'subscriber', {
       insertMode: 'append',
       width: '100%',
       height: '100%',
+      facingMode: "user",
     }, handleError);
   });
 
@@ -38,6 +40,11 @@ function initializeSession() {
     height: '100%',
     fitMode: 'cover',
   }, handleError);
+
+  var video = document.getElementById("video");
+  var subscriber = document.getElementById("subscriber");
+  video.appendChild(subscriber);
+
 
   // Connect to the session
   session.connect(token, function(error) {
@@ -50,6 +57,7 @@ function initializeSession() {
       
     }
   });
+  console.log(publisher.getStats(handleError));
 
   var text = document.getElementById("text");
   var msgHistory = document.querySelector('#history');
@@ -96,7 +104,7 @@ function initializeSession() {
   });
 
   //funtion call for sppech to text
-  speech();
+  //speech();
 
   function speech(){
     window.SpeechRecognition = window.webkitSpeechRecognition;

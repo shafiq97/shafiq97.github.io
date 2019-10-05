@@ -1,10 +1,15 @@
 <!DOCTYPE html>
+<html lang = "en">
 </body>
 </html>
 <html>
 <head>
   <title>Login</title>
-  <link rel="stylesheet" href="Firebase/style.css" />
+  <meta name="Description" content="Login">
+  <meta name="theme-color" content="#f00">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="#">
+  <link rel="stylesheet" href="index.css" media="print" onload="this.media='all'"/>
   <script defer src="https://www.gstatic.com/firebasejs/6.6.1/firebase-app.js"></script>
   <script defer src="https://www.gstatic.com/firebasejs/6.6.1/firebase-auth.js"></script>
   <script defer src="https://www.gstatic.com/firebasejs/6.6.1/firebase-firestore.js"></script>
@@ -18,7 +23,6 @@
   <input type="password" placeholder="Password..." id="password_field" autocomplete="password"/>
   <button id="loginBtn" onclick="login()">Login to Account</button>
   <button id="resetBtn" onclick="resetPassword()">Forgot Password ?</button>
-
 </div>
 
 </body>
