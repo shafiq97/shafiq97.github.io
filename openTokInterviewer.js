@@ -41,9 +41,9 @@ function initializeSession() {
     fitMode: 'cover',
   }, handleError);
 
-  var video = document.getElementById("video");
-  var subscriber = document.getElementById("subscriber");
-  video.appendChild(subscriber);
+  //var video = document.getElementById("video");
+  //var subscriber = document.getElementById("subscriber");
+  //video.appendChild(subscriber);
 
 
   // Connect to the session
@@ -94,11 +94,23 @@ function initializeSession() {
       }
   });
 
+  
+    var synth = window.speechSynthesis;
+    var utter = new SpeechSynthesisUtterance();
+    var voices = window.speechSynthesis.getVoices();
+    utter.rate = 1;
+    utter.pitch = 0.5;
+    utter.voice = voices[3];  
+  
   //Receive signal to append in chat box
   session.on('signal', function(event) {
     var msg = document.createElement('p');
     msg.innerText = event.data;
     msg.className = event.from.connectionId === session.connection.connectionId ? 'mine' : 'theirs';
+    if(msg.className != 'mine'){
+      utter.text = msg.innerText;
+      window.speechSynthesis.speak(utter);
+    }
     msgHistory.appendChild(msg);
     msg.scrollIntoView();
   });

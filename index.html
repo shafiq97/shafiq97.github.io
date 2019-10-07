@@ -4,10 +4,10 @@
 </html>
 <html>
 <head>
-  <title>Login</title>
   <meta name="Description" content="Login">
   <meta name="theme-color" content="#f00">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta content="width=640, initial-scale=0.5, maximum-scale=6, user-scalable=1" name="viewport">
+  <title>Login</title>
   <link rel="shortcut icon" href="#">
   <link rel="stylesheet" href="index.css" media="print" onload="this.media='all'"/>
   <script defer src="https://www.gstatic.com/firebasejs/6.6.1/firebase-app.js"></script>
@@ -15,15 +15,16 @@
   <script defer src="https://www.gstatic.com/firebasejs/6.6.1/firebase-firestore.js"></script>
   <script defer src="Firebase/index.js"></script>
 </head>
-<body>
 
+<body>
 <div id="login_div" class="main-div">
   <h3>Login</h3>
-  <input type="input" placeholder="Email..." id="email_field" name="email_field" min="1" max="100" />
-  <input type="password" placeholder="Password..." id="password_field" autocomplete="password"/>
+  <label for ="email_field">Email</label>
+  <input type="input"  id="email_field" name="email_field" min="1" max="100"/>
+  <label for ="password_field">Password</label>
+  <input type="password"  id="password_field" autocomplete="password"/>
   <button id="loginBtn" onclick="login()">Login to Account</button>
-  <button id="resetBtn" onclick="resetPassword()">Forgot Password ?</button>
+  <button id="resetBtn" onclick="resetPassword()">Forgot Password?</button>
 </div>
-
 </body>
 </html>

@@ -9,7 +9,6 @@ body {
     height: 33%;
     left: 0;
     top: 0;
-    z-index: 10;
     float: left;
 }
 .publisher {
@@ -20,8 +19,6 @@ body {
     height: 89.9%;
     top: 0;
     left: 26.2%;
-    z-index: 100;
-
 }
 .textFromCandidate {
     position: absolute;

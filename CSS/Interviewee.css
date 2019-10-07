@@ -9,13 +9,12 @@
 }
 .publisher {
     border-radius: 3px;
-    bottom: 10px;
+    bottom: 100px;
     position: absolute;
-    width: 360px;
-    height: 240px;
-    left: 10px;
-    z-index: 100;
-    box-sizing: border-box;
+    width: 53.7%;
+    height: 89.9%;
+    top: 0;
+    left: 26.2%;
 }
 #textchat {
     display: block; 

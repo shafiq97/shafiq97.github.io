@@ -60,11 +60,16 @@ input, button {
 #resetBtn{
   float: right;
   width:45%;
+  text-decoration-color: #FFFFFF;
+  background-color: #4D4D4D;
 }
 
 #loginBtn{
   float: left;
-  width: 45%
+  width: 45%;
+  text-decoration-color: #FFFFFF;
+  background-color: #4D4D4D;
+
 }
 
 #email_field{

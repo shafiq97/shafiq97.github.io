@@ -38,7 +38,7 @@ function initializeSession() {
     name: intervieweeUserName
   }, handleError);
   
-  var nodeValue;
+  var nodeValue = "";
   // Connect to the session
   session.connect(token, function(error) {
     // If the connection is successful, publish to the session
@@ -52,7 +52,13 @@ function initializeSession() {
       const text = document.querySelector('#translationText');
       const observer = new MutationObserver(mutations => {
           mutations.forEach(record => {
-            this.newText = record.addedNodes[0].nodeValue;
+            if(typeof record.addedNodes[0] != 'undefined')
+            {
+              this.newText = record.addedNodes[0].nodeValue;
+            }
+            else{
+              this.newText = " ";
+            }
             console.log(this.newText);
             //Send signal to all clients
             session.signal(

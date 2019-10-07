@@ -828,7 +828,7 @@ var interval = "";
 
                             setTimeout(function () {
                                 // if no query detected after start is signed, clear para
-                                if (this.currentPredictedWords.length == 1) {
+                                if (this.currentPredictedWords && this.currentPredictedWords.length == 1) {
                                     this.clearPara();
                                 }
                             }, this.waitTimeForQuery);

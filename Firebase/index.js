@@ -20,7 +20,7 @@ firebase.firestore().settings({
 //enable offline database
 firebase.firestore().enablePersistence();
 
-function getUserRole(uid){
+function getUserRole(uid) {
 
   var db = firebase.firestore();
   var userRef = db.collection("users").doc(uid);
@@ -40,36 +40,6 @@ function getUserRole(uid){
   }).catch(function(error) {
       console.log("Error getting document:", error);
   });
-  
-  /*query.get().then(function(querySnapshot) {
-      querySnapshot.forEach(function(doc) {
-        // doc.data() is never undefined for query doc snapshots
-        if(doc.data().Role == 'Candidate')
-        {
-          uname = doc.data().Name;
-          alert(uname);
-          //sessionStorage.setItem("intervieweeUserName",intervieweeUserName);
-          location.href = "Interviewee.html";
-        }
-
-        else{
-          uname = doc.data().Name;
-          alert(uname);
-          //sessionStorage.setItem("intervieweeUserName",intervieweeUserName);
-          location.href = "Interviewer.html";
-        }
-        
-      });
-  });*/
-
-  /*query2.get().then(function(querySnapshot) {
-      querySnapshot.forEach(function(doc) {
-        interviewerUserName = doc.data().Name;
-        sessionStorage.setItem("interviewerUserName",interviewerUserName);
-        alert(interviewerUserName);
-        location.href = "Interviewer.html";
-      });
-  });*/
 }
 
 function resetPassword() {
@@ -96,13 +66,9 @@ function resetPassword() {
     else {
       alert("Invalid email");
     }
-
-
 }
 
-
-
-function login(){
+function login() {
 
   var userPass = document.getElementById("password_field").value;
   var userEmail = document.getElementById("email_field").value;
