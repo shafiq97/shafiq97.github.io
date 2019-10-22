@@ -1,29 +1,25 @@
 <html lang="en">
 <head>
-  <title> OpenTok Getting Started </title>
+  <title>Interviewer</title>
   <script defer src="https://static.opentok.com/v2/js/opentok.min.js"></script>
   <script defer src="openTokInterviewer.js"></script>
   <link rel="stylesheet" type="text/css" href="CSS/Interviewer.css">
+  <link rel="dns-prefetch" href="https://hlg.tokbox.com">
   <meta charset="utf-8"/>
 </head>
 <body>
-
 <div id="video">
   <div id="subscriber" class="subscriber"></div>
   <div id="publisher" class="publisher"></div>
 </div>
-
-
-
-  <div id="textFromCandidate" class="textFromCandidate">
-    <p id="text">test</p>
-  </div>
-
-  <div id="textchat">
-    <p id="history"></p>
-    <input type="text" placeholder="Input your text here" id="msgTxt" autocomplete="off"></input>      
-  </div>
-
-  <div id="words" class="words"></div>
+<div id="textFromCandidate" class="textFromCandidate">
+  <p id="text">Translated words appear here</p>
+</div>
+<div id="textchat">
+  <p id="history"></p>
+  <label for = "msgTxt">Enter text message below</label><br>
+  <input type="text" id="msgTxt" autocomplete="off"></input>      
+</div>
+<div id="words" class="words"></div>
 </body>
 </html>

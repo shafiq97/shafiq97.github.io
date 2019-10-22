@@ -1,13 +1,12 @@
-.subscriber {
-    height: 30%;
+
+#subscriber {
+    width: 500;
+    height: 33%;
     left: 0;
-    position: absolute;
     top: 0;
-    width: 30%;
-    z-index: 10;
-    float: right;
+    float: left;
 }
-.publisher {
+#publisher {
     border-radius: 3px;
     bottom: 100px;
     position: absolute;

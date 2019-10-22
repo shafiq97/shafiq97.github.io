@@ -4,7 +4,7 @@ var interviewerUserName = sessionStorage.getItem("uname");
 // replace these values with those generated in your TokBox Account
 var apiKey = "46417142";
 var sessionId = "2_MX40NjQxNzE0Mn5-MTU2ODMwMjY4ODU3M35jUGRGNHFUUHdOSXk4K0pwdGhiMGltZ0N-UH4";
-var token = "T1==cGFydG5lcl9pZD00NjQxNzE0MiZzaWc9YzJmNjRlZmUxZDI4OWZmNTdjODU4ZDVjMjc1MDNkN2EwY2U1ZGM0YjpzZXNzaW9uX2lkPTJfTVg0ME5qUXhOekUwTW41LU1UVTJPRE13TWpZNE9EVTNNMzVqVUdSR05IRlVVSGRPU1hrNEswcHdkR2hpTUdsdFowTi1VSDQmY3JlYXRlX3RpbWU9MTU2ODMwMzM3MCZub25jZT0wLjE5NjExMDAxNjg0NDM0NzI2JnJvbGU9cHVibGlzaGVyJmV4cGlyZV90aW1lPTE1NzA4OTUzNjkmaW5pdGlhbF9sYXlvdXRfY2xhc3NfbGlzdD0=";
+var token = "T1==cGFydG5lcl9pZD00NjQxNzE0MiZzaWc9MWVjNjMwMTkyYjhiZGZkMGJhOWJmOWQyZDk4NGVkNTBkYmFjNzFlOTpzZXNzaW9uX2lkPTJfTVg0ME5qUXhOekUwTW41LU1UVTJPRE13TWpZNE9EVTNNMzVqVUdSR05IRlVVSGRPU1hrNEswcHdkR2hpTUdsdFowTi1VSDQmY3JlYXRlX3RpbWU9MTU3MTY2MzMxOSZub25jZT0wLjIyNjAwMzc4NDE0NTgyODkmcm9sZT1wdWJsaXNoZXImZXhwaXJlX3RpbWU9MTU3NDI1ODkxOSZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ==";
 
 // (optional) add server code here
 
@@ -40,11 +40,6 @@ function initializeSession() {
     height: '100%',
     fitMode: 'cover',
   }, handleError);
-
-  //var video = document.getElementById("video");
-  //var subscriber = document.getElementById("subscriber");
-  //video.appendChild(subscriber);
-
 
   // Connect to the session
   session.connect(token, function(error) {
