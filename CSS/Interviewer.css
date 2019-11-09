@@ -10,6 +10,7 @@ body {
     left: 0;
     top: 0;
     float: left;
+    position: relative;
 }
 .publisher {
     border-radius: 3px;
@@ -69,5 +70,8 @@ body {
     width: 50%;
 }
 
+.subscriber-box{
+
+}
 
 

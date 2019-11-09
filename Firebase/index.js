@@ -1,3 +1,4 @@
+
 //firebase configuration
 var config = {
   apiKey: "AIzaSyCSknLFSZ9heejCU7P_1w8wzHxf21xIyYQ",
@@ -69,6 +70,13 @@ function resetPassword() {
 }
 
 function login() {
+
+  var sessionId = document.getElementById("room_id").value;
+  if(sessionId.length == 0){
+        alert("Room ID cannot be empty");
+        location.reload();
+  }
+  sessionStorage.setItem("SID", sessionId);
 
   var userPass = document.getElementById("password_field").value;
   var userEmail = document.getElementById("email_field").value;

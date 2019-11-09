@@ -1,9 +1,16 @@
 //get username from index.js
 var interviewerUserName = sessionStorage.getItem("uname");
+var sessionId = sessionStorage.getItem("SID");
+console.log(sessionId);
+
+alert("Hello "+ interviewerUserName + ", Please wait your candidate to join your session");
+
+//getSessionID
+
 
 // replace these values with those generated in your TokBox Account
 var apiKey = "46417142";
-var sessionId = "2_MX40NjQxNzE0Mn5-MTU2ODMwMjY4ODU3M35jUGRGNHFUUHdOSXk4K0pwdGhiMGltZ0N-UH4";
+//var sessionId = "2_MX40NjQxNzE0Mn5-MTU2ODMwMjY4ODU3M35jUGRGNHFUUHdOSXk4K0pwdGhiMGltZ0N-UH4";
 var token = "T1==cGFydG5lcl9pZD00NjQxNzE0MiZzaWc9MWVjNjMwMTkyYjhiZGZkMGJhOWJmOWQyZDk4NGVkNTBkYmFjNzFlOTpzZXNzaW9uX2lkPTJfTVg0ME5qUXhOekUwTW41LU1UVTJPRE13TWpZNE9EVTNNMzVqVUdSR05IRlVVSGRPU1hrNEswcHdkR2hpTUdsdFowTi1VSDQmY3JlYXRlX3RpbWU9MTU3MTY2MzMxOSZub25jZT0wLjIyNjAwMzc4NDE0NTgyODkmcm9sZT1wdWJsaXNoZXImZXhwaXJlX3RpbWU9MTU3NDI1ODkxOSZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ==";
 
 // (optional) add server code here
@@ -52,7 +59,7 @@ function initializeSession() {
       
     }
   });
-  console.log(publisher.getStats(handleError));
+  //console.log(publisher.getStats(handleError));
 
   var text = document.getElementById("text");
   var msgHistory = document.querySelector('#history');
