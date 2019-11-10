@@ -49,3 +49,12 @@
 #videos #subscriber{
   float: right;
 }
+
+#startButton.trainButton:hover{
+    background-color: green;
+}
+
+
+#stopButton.trainButton:hover{
+    background-color: red;
+}

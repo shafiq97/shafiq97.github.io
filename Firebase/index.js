@@ -60,6 +60,7 @@ function resetPassword() {
       auth.sendPasswordResetEmail(userEmail).then(function() {
         // Email sent.
         console.log(userEmail);
+        alert("An email has been sent to " + userEmail);
       }).catch(function(error) {
         // An error happened.
       });

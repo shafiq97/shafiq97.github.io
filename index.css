@@ -1,5 +1,11 @@
+html{
+	height: 100%;
+}
+
 body {
-  background: #fff;
+  background-image: url("Images\\header-asl-1-dimension.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
   padding: 0;
   margin: 0;
   font-family: 'Nunito', sans-serif;
@@ -171,6 +177,9 @@ input, button {
 
 #square{
 	border-style: solid;
+	border-color: #5d8ffc;
 	display: inline-block;
 	padding: 20px;
+	background-color: white;
+	border-radius: 25px;
 }

@@ -19,6 +19,7 @@ Additionally, usage of TensorFlow was learned from Abishek Singh's "alexa-sign-l
 Author: Sufiyaan Nadeem
 */
 var interval = "";
+var interval2 = "";
 
 (function () {
     function r(e, n, t) {
@@ -415,6 +416,11 @@ var interval = "";
                         trainBtn.innerText = "Train";
                         this.trainingCommands.appendChild(trainBtn);
 
+                        var stopBtn = document.createElement('button');
+                        stopBtn.className = "clearButton";
+                        stopBtn.innerText = "Stop";
+                        this.trainingCommands.appendChild(stopBtn);
+
                         var clearBtn = document.createElement('button');
                         clearBtn.className = "clearButton";
                         clearBtn.innerText = "Clear";
@@ -424,8 +430,15 @@ var interval = "";
 
                         // Change training class from none to specified class if training button is pressed
                         trainBtn.addEventListener('click', function () {
-                            _this3.train(i);
+                            
+                                interval2 = window.setInterval( function() { _this3.train(i); }, 300 );         
+                            
                         });
+
+                        stopBtn.addEventListener('click', function () {         
+                                  window.clearInterval(interval2);   
+                        });
+
 
                         // Create clear button to remove training examples on click
                         clearBtn.addEventListener('click', function () {
@@ -474,6 +487,7 @@ var interval = "";
                                 _this3.doneRetrain.style.display = "block";
                                 _this3.trainingCommands.innerHTML = "";
                                 _this3.trainingCommands.appendChild(trainBtn);
+                                _this3.trainingCommands.appendChild(stopBtn);
                                 _this3.trainingCommands.appendChild(clearBtn);
                                 _this3.trainingCommands.appendChild(exampleCountDisplay);
                                 _this3.trainingCommands.appendChild(checkMark);
