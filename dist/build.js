@@ -21,6 +21,7 @@ Author: Sufiyaan Nadeem
 var interval = "";
 var interval2 = "";
 
+
 (function () {
     function r(e, n, t) {
         function o(i, f) {
@@ -105,12 +106,14 @@ var interval2 = "";
                 }
             }
 
+            
+
             // Webcam Image size. Must be 227.
             const IMAGE_SIZE = 227;
             // K value for KNN. 10 means that we will take votes from 10 data points to classify each tensor.
-            const TOPK = 9;
+            const TOPK = 10;
             // Percent confidence above which prediction needs to be to return a prediction.
-            const confidenceThreshold = 0.90;
+            const confidenceThreshold = 0.98;
 
             // Initial Gestures that need to be trained.
             // The start gesture is for signalling when to start prediction
@@ -144,6 +147,8 @@ var interval2 = "";
 
                     // Initalizing kNN model to none.
                     this.knn = null;
+
+
                     /* Initalizing previous kNN model that we trained when training of the current model
                     is stopped or prediction has begun. */
                     this.previousKnn = this.knn;
@@ -228,6 +233,22 @@ var interval2 = "";
                             });
                         });
                     }
+                
+                }, {
+                    key: 'save',
+                    value: function save(){
+                        let dataset = this.classifier.getClassifierDataset()
+                        var datasetObj = {}
+                        Object.keys(dataset).forEach((key) => {
+                        let data = dataset[key].dataSync();
+                        // use Array.from() so when JSON.stringify() it covert to an array string e.g [0.1,-0.2...] 
+                        // instead of object e.g {0:"0.1", 1:"-0.2"...}
+                        datasetObj[key] = Array.from(data); 
+                        });
+                        let jsonStr = JSON.stringify(datasetObj)
+                        //can be change to other source
+                        localStorage.setItem("myData", jsonStr);
+                    }
                 }, {
 
                     key: 'initialTraining',
@@ -288,12 +309,7 @@ var interval2 = "";
                         var trainBtn = document.getElementById(btnType);
                         var stopInterval = document.getElementById("stopInterval");
                         
-                        trainBtn.addEventListener('click', function () {
-                            
-                                 _this3.train(i);        
-                            
-                        });
-
+                 
                         // Call training function for this gesture on click
                         trainBtn.addEventListener('click', function () {
                             
@@ -307,8 +323,6 @@ var interval2 = "";
                                 window.clearInterval(interval);
                             
                         });
-
-                       
 
                         // Clear button to remove training examples on click
                         var clearBtn = document.getElementById('clear_' + btnType);
@@ -552,6 +566,8 @@ var interval2 = "";
                             // Add current image to classifier
                             this.knn.addImage(image, gestureIndex);
 
+                            //this.knn.save();
+                                                    
                             // Get example count
                             const exampleCount = this.knn.getClassExampleCount()[gestureIndex];
 

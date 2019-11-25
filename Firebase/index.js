@@ -1,4 +1,3 @@
-
 //firebase configuration
 var config = {
   apiKey: "AIzaSyCSknLFSZ9heejCU7P_1w8wzHxf21xIyYQ",
@@ -21,17 +20,18 @@ firebase.firestore().settings({
 //enable offline database
 firebase.firestore().enablePersistence();
 
-function getUserRole(uid) {
 
+function getUserRole(uid) {
   var db = firebase.firestore();
   var userRef = db.collection("users").doc(uid);
- 
   userRef.get().then(function(doc) {
       if (doc.exists) {
           sessionStorage.setItem("uname",doc.data().Name);
           if(doc.data().Role == "Interviewer") {
             window.location.href = "Interviewer.html";
           } else {
+            document.getElementById("room_id").value = doc.data().RoomID;
+            alert(doc.data().RoomID);
             window.location.href = "Interviewee.html";
           }
       } else {
@@ -44,7 +44,6 @@ function getUserRole(uid) {
 }
 
 function resetPassword() {
-
     var userPass = document.getElementById("password_field").value;
     var userEmail = document.getElementById("email_field").value;
     var resetButton = document.getElementById("resetBtn").value;
@@ -71,14 +70,6 @@ function resetPassword() {
 }
 
 function login() {
-
-  var sessionId = document.getElementById("room_id").value;
-  if(sessionId.length == 0){
-        alert("Room ID cannot be empty");
-        location.reload();
-  }
-  sessionStorage.setItem("SID", sessionId);
-
   var userPass = document.getElementById("password_field").value;
   var userEmail = document.getElementById("email_field").value;
   var resetButton = document.getElementById("resetBtn").value;
@@ -100,7 +91,8 @@ firebase.auth().onAuthStateChanged(function(user) {
 
     if(user != null) {
       this.userEmail = document.getElementById("email_field").value;
-      getUserRole(uid);
+       getUserRole(uid);
+      
     }
   } 
   else {
@@ -112,6 +104,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 function logout() {
   firebase.auth().signOut();
 }
+
 
 //logout upon browser refresh
 window.hashchange = logout();

@@ -1,6 +1,6 @@
 //get username from index.js
 var interviewerUserName = sessionStorage.getItem("uname");
-var sessionId = sessionStorage.getItem("SID");
+//var sessionId = sessionStorage.getItem("SID");
 console.log(sessionId);
 
 alert("Hello "+ interviewerUserName + ", Please wait your candidate to join your session");
@@ -10,8 +10,8 @@ alert("Hello "+ interviewerUserName + ", Please wait your candidate to join your
 
 // replace these values with those generated in your TokBox Account
 var apiKey = "46417142";
-//var sessionId = "2_MX40NjQxNzE0Mn5-MTU2ODMwMjY4ODU3M35jUGRGNHFUUHdOSXk4K0pwdGhiMGltZ0N-UH4";
-var token = "T1==cGFydG5lcl9pZD00NjQxNzE0MiZzaWc9MWVjNjMwMTkyYjhiZGZkMGJhOWJmOWQyZDk4NGVkNTBkYmFjNzFlOTpzZXNzaW9uX2lkPTJfTVg0ME5qUXhOekUwTW41LU1UVTJPRE13TWpZNE9EVTNNMzVqVUdSR05IRlVVSGRPU1hrNEswcHdkR2hpTUdsdFowTi1VSDQmY3JlYXRlX3RpbWU9MTU3MTY2MzMxOSZub25jZT0wLjIyNjAwMzc4NDE0NTgyODkmcm9sZT1wdWJsaXNoZXImZXhwaXJlX3RpbWU9MTU3NDI1ODkxOSZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ==";
+var sessionId = "2_MX40NjQxNzE0Mn5-MTU2ODMwMjY4ODU3M35jUGRGNHFUUHdOSXk4K0pwdGhiMGltZ0N-UH4";
+var token = "T1==cGFydG5lcl9pZD00NjQxNzE0MiZzaWc9YmJhMDhkNzFlYWFmNjczNGY1ZWEwYmM5MmVmZjBiMDRmOTM3OTA0MjpzZXNzaW9uX2lkPTJfTVg0ME5qUXhOekUwTW41LU1UVTJPRE13TWpZNE9EVTNNMzVqVUdSR05IRlVVSGRPU1hrNEswcHdkR2hpTUdsdFowTi1VSDQmY3JlYXRlX3RpbWU9MTU3NDY4NjIxNyZub25jZT0wLjYwMDAyOTM1MjgyNjQxOCZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNTc3Mjc4MjE4JmluaXRpYWxfbGF5b3V0X2NsYXNzX2xpc3Q9";
 
 // (optional) add server code here
 
@@ -118,7 +118,7 @@ function initializeSession() {
   });
 
   //funtion call for sppech to text
-  //speech();
+  speech();
 
   function speech(){
     window.SpeechRecognition = window.webkitSpeechRecognition;
