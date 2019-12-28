@@ -13,8 +13,8 @@
   <script defer src="https://www.gstatic.com/firebasejs/6.6.1/firebase-auth.js"></script>
   <script defer src="https://www.gstatic.com/firebasejs/6.6.1/firebase-firestore.js"></script>
   <script defer src="Firebase/index.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
-
 <body>
   <div id="login_div" class="main-div">
     <div id="square">
@@ -28,9 +28,8 @@
             <p>Room ID must be provided by organization</p>
           </div>
         <label for ="room_id">Room ID</label>
-        <input type="input"  id="room_id" autocomplete="" required/>
+        <button id="room_id" autocomplete="" onclick="getRoomID()">Get my Room ID</button><br><br>
       </div>
-      
       <button id="loginBtn" onclick="login()">Login to Account</button>
       <button id="resetBtn" onclick="resetPassword()">Forgot Password?</button>
     </div>
