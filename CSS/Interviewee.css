@@ -1,10 +1,12 @@
 
 #subscriber {
-    width: 500;
-    height: 33%;
-    left: 0;
+    border-radius: 3px;
+    bottom: 100px;
+    position: absolute;
+    width: 30%;
+    height: 30%;
     top: 0;
-    float: left;
+    left: 0;
 }
 #publisher {
     border-radius: 3px;
